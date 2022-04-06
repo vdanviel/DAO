@@ -3,6 +3,7 @@
 
 class DBconnect extends PDO{
 
+    #conectando
     private $conn;
 
     public function __construct($host,$dbname,$user,$password,$dbtype="mysql"){
@@ -11,6 +12,7 @@ class DBconnect extends PDO{
 
     }
 
+    #parametros
     private function setParams($statment,$parameters = array()){
 
         foreach ($parameters as $key => &$value) {
@@ -19,6 +21,7 @@ class DBconnect extends PDO{
 
     }
 
+    #comando e execuxão
     public function queryCommand($queryLine,$params = array()){
 
         $stmt = $this->conn->prepare($queryLine);
@@ -30,6 +33,7 @@ class DBconnect extends PDO{
         return $stmt;
     }
 
+    #comando SELECT
     public function select($rawQuery,$params = array()):array
     {
         $stmt = $this->queryCommand($rawQuery, $params);
